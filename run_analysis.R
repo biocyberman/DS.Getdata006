@@ -56,23 +56,22 @@ read.data <- function(dataset = "Test", col.ids = selected){
     stop("Could not find dataset file: ", ifile)
   }
   #test <- fread(ifile, sep = "\n")
-  #fcon <- file(ifile, open="rt")
-  dat <- read.fwf(file = ifile, widths = rep(c(-1,15), 561), header = FALSE, colClasses = "character") # Use ReadLines for portability, one can also preprocess input files with 'gawk', 'sed', etc 
-  dat[, selected]
-  #close(fcon)
-#   dat <- do.call(rbind,
-#                  lapply(dat, FUN= function(line) take.elems(line, col.ids)
-#                  ))
+  fcon <- file(ifile, open="rt")
+  dat <- readLines(con = fcon) # Use ReadLines for portability, one can also preprocess input files with 'gawk', 'sed', etc 
+  close(fcon)
+  dat <- do.call(rbind,
+                 lapply(dat, FUN= function(line) take.elems(line, col.ids)
+                 ))
   
 }
 
 
 
 message("Reading Test dataset...")
-test.set <- read.data("test", selected)
+test.set <- read.data("test")
 test.set <- cbind(test.subjects, test.set)
 message("Reading Train dataset...")
-train.set <- read.data("train", selected)
+train.set <- read.data("train")
 train.set <- cbind(train.subjects, train.set)
 cnames <- features[selected,2]
 cnames <- c("Subject.ID", cnames)
@@ -85,5 +84,3 @@ message(sprintf("Writing output to '%s'...", ofile))
 write.table(cnames, file= ofile, append = FALSE, row.names= FALSE, col.names=FALSE, sep=",")
 write.table(test.set, file= ofile, append = TRUE, row.names= FALSE, col.names=FALSE, sep=",")
 write.table(train.set, file= ofile, append = TRUE, row.names= FALSE, col.names=FALSE, sep=",")
-# test <- fread(ofile)
-# un <- unique(test[,"Subject.ID", with = F])
