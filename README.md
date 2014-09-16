@@ -45,15 +45,17 @@ As has been discussed a lot in the [course project forum](https://class.coursera
 
 This is done before Task 3 to achieve more reable code in the `run_analysis.R` itself. 
 ```{r}
-# cnames are names of columns ends with 'mean' or 'std' from 'features.txt' file. 
-# Where, `selected` is a logical vector of the rows in 'features.txt' that satisfy 
-# this pattern.
 cnames <- features[selected,2]
 # Replace prefix 't' with 'time'
 cnames <- gsub(pattern="^t", replacement="time.", x=cnames)
 # Replace prefix 'f' with 'frequency'
 cnames <- gsub(pattern="^f", replacement="frequency.", x=cnames)
 # Replace hyphens with '.' dots, and remove parenthesises 
+cnames <- gsub(pattern="-", replacement=".", x=cnames)
+cnames <- gsub(pattern="\\(\\)", replacement="", x=cnames)
+cnames <- c("Subject.ID","Activities", cnames)
+#cnames <- matrix(cnames, ncol = length(cnames))
+colnames(slim.data) <- cnames
 ```
 ### Task 3 Uses descriptive activity names to name the activities in the data set
 

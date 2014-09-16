@@ -173,6 +173,10 @@ hljs.initHighlightingOnLoad();
 </script>
 
 
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 
 
 </head>
@@ -227,15 +231,17 @@ hljs.initHighlightingOnLoad();
 
 <p>This is done before Task 3 to achieve more reable code in the <code>run_analysis.R</code> itself. </p>
 
-<pre><code class="r"># cnames are names of columns ends with &#39;mean&#39; or &#39;std&#39; from &#39;features.txt&#39; file. 
-# Where, `selected` is a logical vector of the rows in &#39;features.txt&#39; that satisfy 
-# this pattern.
-cnames &lt;- features[selected,2]
+<pre><code class="r">cnames &lt;- features[selected,2]
 # Replace prefix &#39;t&#39; with &#39;time&#39;
 cnames &lt;- gsub(pattern=&quot;^t&quot;, replacement=&quot;time.&quot;, x=cnames)
 # Replace prefix &#39;f&#39; with &#39;frequency&#39;
 cnames &lt;- gsub(pattern=&quot;^f&quot;, replacement=&quot;frequency.&quot;, x=cnames)
 # Replace hyphens with &#39;.&#39; dots, and remove parenthesises 
+cnames &lt;- gsub(pattern=&quot;-&quot;, replacement=&quot;.&quot;, x=cnames)
+cnames &lt;- gsub(pattern=&quot;\\(\\)&quot;, replacement=&quot;&quot;, x=cnames)
+cnames &lt;- c(&quot;Subject.ID&quot;,&quot;Activities&quot;, cnames)
+#cnames &lt;- matrix(cnames, ncol = length(cnames))
+colnames(slim.data) &lt;- cnames
 </code></pre>
 
 <h3>Task 3 Uses descriptive activity names to name the activities in the data set</h3>
