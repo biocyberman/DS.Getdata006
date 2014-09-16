@@ -134,43 +134,6 @@ hr {
 
 </style>
 
-<!-- Styles for R syntax highlighter -->
-<style type="text/css">
-   pre .operator,
-   pre .paren {
-     color: rgb(104, 118, 135)
-   }
-
-   pre .literal {
-     color: rgb(88, 72, 246)
-   }
-
-   pre .number {
-     color: rgb(0, 0, 205);
-   }
-
-   pre .comment {
-     color: rgb(76, 136, 107);
-   }
-
-   pre .keyword {
-     color: rgb(0, 0, 255);
-   }
-
-   pre .identifier {
-     color: rgb(0, 0, 0);
-   }
-
-   pre .string {
-     color: rgb(3, 106, 7);
-   }
-</style>
-
-<!-- R syntax highlighter -->
-<script type="text/javascript">
-var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
-hljs.initHighlightingOnLoad();
-</script>
 
 
 
@@ -180,16 +143,780 @@ hljs.initHighlightingOnLoad();
 <body>
 <h1>CodeBook for DS.Getdata006</h1>
 
-<p>This is an R Markdown document. Markdown is a simple formatting syntax for authoring web pages (click the <strong>MD</strong> toolbar button for help on Markdown).</p>
+<p>This is the code book for the tidy data at <code>data/combined_tidy_dataset.txt</code>.
+For further information on how the tidy data was created, please refer to the
+README.md file. </p>
 
-<p>When you click the <strong>Knit HTML</strong> button a web page will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:</p>
+<p>The data has 180 rows and 81 variables(columns). The first two columns are:</p>
 
-<pre><code class="r">summary(cars)
+<p><strong>Subject.ID:</strong> numerical identification for persons either in test group or train group.</p>
+
+<p><strong>Activities:</strong> Labels for what the subject is doing at the time of data acquisition. </p>
+
+<p><strong>Remaiming columns of 79 variables:</strong> their names follow the convention below:</p>
+
+<p>They are all either mean (variable names containing &#39;mean&#39;) values or stand deviation
+(variable names containing &#39;std&#39;) values of data that describe human body movements and effects
+of gravity. These variables have names with different elements besides &#39;mean&#39; and &#39;std&#39;.</p>
+
+<ol>
+<li><p>Types of data (time or frequency)</p>
+
+<ul>
+<li>prefix <em>time</em> indicates time-domain data.</li>
+<li>prefix <em>frequency</em> indicates frequency-domain data.</li>
+</ul></li>
+<li><p>Sources of data (body or gravity)</p>
+
+<ul>
+<li>variables with <em>Body</em>: data of the subjects&#39; bodies.</li>
+<li>variables with <em>Gravity</em>: data of the gravity.</li>
+</ul></li>
+<li><p>Types of sensor (accelerometer to linear acceleration and gyroscope to measure angular velocity)</p>
+
+<ul>
+<li>variables with <em>Acc</em>: data from accelerometer.</li>
+<li>variables with <em>Gyro</em>: data from gyroscope. </li>
+</ul></li>
+<li><p>Body jerking motion</p></li>
+<li><p>Magnitude</p>
+
+<ul>
+<li>variables with <em>Mag</em> indicates magnitudes of three-dimensional signals calculated using the Euclidean norm</li>
+</ul></li>
+</ol>
+
+<h1>Summary of variables</h1>
+
+<p>Following ares are summary for 81 variables of their data type, data width. The first two are
+of type factor so their first 6 levels are shown. Remaining variables are numberic and their
+5-number summary are shown.</p>
+
+<h2>Subject.ID</h2>
+
+<pre><code>Data Type: factor
+Data Width: 2
+First 6 levels:
+1   10  11  12  13  14
 </code></pre>
 
-<p>You can also embed plots, for example:</p>
+<h2>Activities</h2>
 
-<pre><code class="r fig.width=7, fig.height=6">plot(cars)
+<pre><code>Data Type: factor
+Data Width: 18
+First 6 levels:
+    LAYING  SITTING STANDING    WALKING WALKING_DOWNSTAIRS  WALKING_UPSTAIRS
+</code></pre>
+
+<h2>time.BodyAcc.mean.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    3482    4938    5151    5152    5410    6187
+</code></pre>
+
+<h2>time.BodyAcc.mean.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2659    4074    5436    5282    6463    7577
+</code></pre>
+
+<h2>time.BodyAcc.mean.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2177    4351    5681    5259    6338    7282
+</code></pre>
+
+<h2>time.BodyAcc.std.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    862.6   2354    5784    5152    6968    10070
+</code></pre>
+
+<h2>time.BodyAcc.std.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    927.7   3940    5141    5196    6265    9901
+</code></pre>
+
+<h2>time.BodyAcc.std.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    837 2644    5708    5005    6935    10120
+</code></pre>
+
+<h2>time.GravityAcc.mean.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    109.5   3333    5789    5217    7068    10010
+</code></pre>
+
+<h2>time.GravityAcc.mean.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    476.4   2938    4998    5050    6958    10120
+</code></pre>
+
+<h2>time.GravityAcc.mean.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    554.7   3152    4972    5046    6771    10110
+</code></pre>
+
+<h2>time.GravityAcc.std.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1188    2918    4904    4954    7089    9186
+</code></pre>
+
+<h2>time.GravityAcc.std.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1461    2946    5050    4932    6560    9108
+</code></pre>
+
+<h2>time.GravityAcc.std.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1053    3291    4992    4959    6531    8913
+</code></pre>
+
+<h2>time.BodyAccJerk.mean.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2251    2838    4447    4956    7127    7549
+</code></pre>
+
+<h2>time.BodyAccJerk.mean.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    3497    4346    5037    5073    5832    6808
+</code></pre>
+
+<h2>time.BodyAccJerk.mean.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    4160    4900    5130    5152    5384    6242
+</code></pre>
+
+<h2>time.BodyAccJerk.std.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1025    2655    5746    5068    6799    10060
+</code></pre>
+
+<h2>time.BodyAccJerk.std.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1343    2919    5544    5046    6660    9644
+</code></pre>
+
+<h2>time.BodyAccJerk.std.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    588 2229    5807    4898    7354    9155
+</code></pre>
+
+<h2>time.BodyGyro.mean.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    3013    4001    5363    5272    6373    8565
+</code></pre>
+
+<h2>time.BodyGyro.mean.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    3304    4701    5168    5137    5631    6765
+</code></pre>
+
+<h2>time.BodyGyro.mean.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2174    3716    5064    4978    6415    7873
+</code></pre>
+
+<h2>time.BodyGyro.std.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    587.5   2412    5330    4913    7378    9370
+</code></pre>
+
+<h2>time.BodyGyro.std.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    448.7   2417    5792    4954    7051    10100
+</code></pre>
+
+<h2>time.BodyGyro.std.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    824 2356    5833    4949    7099    10180
+</code></pre>
+
+<h2>time.BodyGyroJerk.mean.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    3625    4667    5183    5173    5692    6923
+</code></pre>
+
+<h2>time.BodyGyroJerk.mean.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    3991    4747    5048    5191    5615    6606
+</code></pre>
+
+<h2>time.BodyGyroJerk.mean.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    4018    4875    5108    5170    5478    6687
+</code></pre>
+
+<h2>time.BodyGyroJerk.std.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    410.7   2412    5570    4918    7371    9362
+</code></pre>
+
+<h2>time.BodyGyroJerk.std.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    418 2453    5628    4913    7318    9889
+</code></pre>
+
+<h2>time.BodyGyroJerk.std.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    478.9   2193    5659    4908    7375    8894
+</code></pre>
+
+<h2>time.BodyAccMag.mean</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    788.2   2965    5607    5223    6723    10000
+</code></pre>
+
+<h2>time.BodyAccMag.std</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    986.2   2379    5682    5136    6776    9961
+</code></pre>
+
+<h2>time.GravityAccMag.mean</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    788.2   2965    5607    5223    6723    10000
+</code></pre>
+
+<h2>time.GravityAccMag.std</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    986.2   2379    5682    5136    6776    9961
+</code></pre>
+
+<h2>time.BodyAccJerkMag.mean</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1084    2471    5805    4991    7119    9870
+</code></pre>
+
+<h2>time.BodyAccJerkMag.std</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1150    2559    5713    5060    6807    9856
+</code></pre>
+
+<h2>time.BodyGyroMag.mean</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    853.1   2478    5840    5017    6954    9989
+</code></pre>
+
+<h2>time.BodyGyroMag.std</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    725.1   2610    5697    4951    7082    9912
+</code></pre>
+
+<h2>time.BodyGyroJerkMag.mean</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    531.9   2270    5544    4895    7382    9530
+</code></pre>
+
+<h2>time.BodyGyroJerkMag.std</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    466 2277    5659    4907    7314    9480
+</code></pre>
+
+<h2>frequency.BodyAcc.mean.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1029    2419    5824    5114    6933    10030
+</code></pre>
+
+<h2>frequency.BodyAcc.mean.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1047    4034    5326    5165    6317    9812
+</code></pre>
+
+<h2>frequency.BodyAcc.mean.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    849.4   2409    5723    4956    7266    9886
+</code></pre>
+
+<h2>frequency.BodyAcc.std.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    812.3   2507    5761    5160    6933    10070
+</code></pre>
+
+<h2>frequency.BodyAcc.std.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    874 3725    5388    5164    6415    9874
+</code></pre>
+
+<h2>frequency.BodyAcc.std.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    926.2   2614    5655    4999    6895    10160
+</code></pre>
+
+<h2>frequency.BodyAcc.meanFreq.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2335    4043    4955    5085    6120    8271
+</code></pre>
+
+<h2>frequency.BodyAcc.meanFreq.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2303    3940    5088    5098    6029    8706
+</code></pre>
+
+<h2>frequency.BodyAcc.meanFreq.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1866    3956    5352    5118    6318    8401
+</code></pre>
+
+<h2>frequency.BodyAccJerk.mean.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1133    2560    5759    5034    6945    9886
+</code></pre>
+
+<h2>frequency.BodyAccJerk.mean.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1168    2703    5611    5025    6855    9507
+</code></pre>
+
+<h2>frequency.BodyAccJerk.mean.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    619.1   2331    5753    4909    7368    9103
+</code></pre>
+
+<h2>frequency.BodyAccJerk.std.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1022    2753    5802    5034    6941    10090
+</code></pre>
+
+<h2>frequency.BodyAccJerk.std.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1225    2856    5509    5030    6636    9640
+</code></pre>
+
+<h2>frequency.BodyAccJerk.std.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    601.8   2261    5776    4891    7397    9105
+</code></pre>
+
+<h2>frequency.BodyAccJerk.meanFreq.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1795    2911    4464    4968    7067    8262
+</code></pre>
+
+<h2>frequency.BodyAccJerk.meanFreq.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2406    4023    4885    5054    6046    8611
+</code></pre>
+
+<h2>frequency.BodyAccJerk.meanFreq.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2301    3578    5032    5020    6308    8339
+</code></pre>
+
+<h2>frequency.BodyGyro.mean.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    855.4   2512    5360    4954    7161    10190
+</code></pre>
+
+<h2>frequency.BodyGyro.mean.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    628.5   2537    5700    4943    7195    9656
+</code></pre>
+
+<h2>frequency.BodyGyro.mean.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1004    2492    5825    4980    7007    10120
+</code></pre>
+
+<h2>frequency.BodyGyro.std.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    761.6   2411    5340    4911    7401    9391
+</code></pre>
+
+<h2>frequency.BodyGyro.std.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    517.2   2348    5719    4955    7003    10190
+</code></pre>
+
+<h2>frequency.BodyGyro.std.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    612 2386    5928    4923    7143    10050
+</code></pre>
+
+<h2>frequency.BodyGyro.meanFreq.X</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2942    4186    4745    5078    6034    8088
+</code></pre>
+
+<h2>frequency.BodyGyro.meanFreq.Y</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    3076    4404    4977    5164    5682    8928
+</code></pre>
+
+<h2>frequency.BodyGyro.meanFreq.Z</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2221    4056    4984    5090    5981    8596
+</code></pre>
+
+<h2>frequency.BodyAccMag.mean</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1176    2515    5544    5155    6749    9991
+</code></pre>
+
+<h2>frequency.BodyAccMag.std</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    769.3   2376    6053    4996    7103    10010
+</code></pre>
+
+<h2>frequency.BodyAccMag.meanFreq</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1460    4251    5406    5142    6216    8000
+</code></pre>
+
+<h2>frequency.BodyBodyAccJerkMag.mean</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1126    2512    5752    5076    6762    9989
+</code></pre>
+
+<h2>frequency.BodyBodyAccJerkMag.std</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    892.5   2700    5773    5041    6864    9240
+</code></pre>
+
+<h2>frequency.BodyBodyAccJerkMag.meanFreq</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    1753    4177    5131    5056    6114    7882
+</code></pre>
+
+<h2>frequency.BodyBodyGyroMag.mean</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    983.6   2496    5829    4923    7210    9001
+</code></pre>
+
+<h2>frequency.BodyBodyGyroMag.std</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    662.6   2460    5568    4922    7208    9932
+</code></pre>
+
+<h2>frequency.BodyBodyGyroMag.meanFreq</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2637    4088    4864    5187    6216    8808
+</code></pre>
+
+<h2>frequency.BodyBodyGyroJerkMag.mean</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    478.3   2276    5633    4902    7377    9503
+</code></pre>
+
+<h2>frequency.BodyBodyGyroJerkMag.std</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    611 2274    5610    4905    7318    9493
+</code></pre>
+
+<h2>frequency.BodyBodyGyroJerkMag.meanFreq</h2>
+
+<pre><code>Data Type: numeric
+Data Width: 16
+Summary:
+    Min.    1st Qu. Median  Mean    3rd Qu. Max.
+    2681    4424    5133    5137    5938    7729
 </code></pre>
 
 </body>

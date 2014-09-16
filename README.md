@@ -12,7 +12,7 @@ A temporary repo for course project of `getting and cleaning data` class. The pr
 Raw data
 -----------------
 
-Raw data was collected by downloading a zip file from [project's description page](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip). It can also be downloaded from [the original source](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). The zip file aslo contains documentation about how the raw data was originally collected, what in the data,
+Raw data was collected by downloading a zip file from [project's description page](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip). It can also be downloaded from [the original source](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones). The zip file aslo contains documentation about how the raw data was originally collected, what in the data.
 
 Naming conventions
 -----------------
@@ -21,6 +21,8 @@ Naming conventions
 
 Analysis workflow and implementation of run_analysis.R
 ----------------
+
+**Quick note:** Remaining parts of this README.md file explains how I thought about, chose, implemented the solution. The [run_analysis.html](./run_analysis.html) is also a good suplement for to understand the solution because it is `literate` programming document where code and documentation are weaved together to create a continous flow of information. 
 
 From course project description and discussions in the project forum, it appears to be an `open-ended project in a controlled environment` (i.e. by opinions of instructors and peer-reviewers), where students are to decide what they want to come up with. While this is a good opportunity to practice a real-world situtation, it (the project) created a lot of confusion for students. It really makes them spends a lot of time in figuring out what to do to **satisfy the fictional requirements** of the project, not the part of **making sense of the data and communicate the analysis**. I consider the later is more important. All in all, this project gave students a opportunity to experience what it means when **you have data but not clear scientific questions in mind**: _you are confused and the data is useless!!!_ Did you experience the same thing? I am just curious. 
 

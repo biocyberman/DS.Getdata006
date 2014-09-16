@@ -173,21 +173,28 @@ hljs.initHighlightingOnLoad();
 </script>
 
 
+<!-- MathJax scripts -->
+<script type="text/javascript" src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 
 
 </head>
 
 <body>
-<pre><code class="r">## run_annalysis.R
+<pre><code class="r">library(data.table)
 </code></pre>
+
+<p>run_annalysis.R</p>
 
 <p>A script to do analysis according to requirements in &#39;getting and cleaning 
 data project&#39;</p>
 
-<pre><code class="r">#
-fs &lt;- .Platform$file.sep # Another way is &#39;file.path&#39; function
-raw.dir &lt;- &quot;raw&quot;
-dat.dir &lt;- &quot;data&quot;
+<p>Preparation of directory and raw data file</p>
+
+<pre><code class="r">fs &lt;- .Platform$file.sep # Another way is &#39;file.path&#39; function
+raw.dir &lt;- &quot;./raw&quot;
+dat.dir &lt;- &quot;./data&quot;
 dir.create(raw.dir, showWarnings=FALSE)
 dir.create(dat.dir, showWarnings=FALSE)
 raw.data &lt;- paste0(raw.dir, fs, &quot;getdata.Fprojectfiles.FUCI_HAR_Dataset.zip&quot;)
@@ -195,19 +202,27 @@ if (!file.exists(raw.data)) {
   message(&quot;Downloading raw data from internet...&quot;)
   fileUrl &lt;- &quot;https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip&quot;
   download.file(url=fileUrl, destfile= raw.data, quiet= TRUE, method= &quot;wget&quot;)
-  unzip(zipfile=raw.data, exdir= raw.dir, overwrite= TRUE)
 }
-
-## Read various small things
+unzip(zipfile=raw.data, exdir= raw.dir, overwrite= TRUE)
+raw.dir &lt;- file.path(raw.dir, &quot;UCI HAR Dataset&quot;)
 </code></pre>
 
-<p>This reads columns of subjects, activities for test and train datasets.
-@param what can be either &ldquo;subjects&rdquo; or &ldquo;activities&rdquo;
-@param set is a charecter string of either &ldquo;test&rdquo; or &ldquo;train&rdquo;</p>
+<p>Read various small things.</p>
+
+<p>This reads columns of subjects, activities for test and train datasets.</p>
+
+<p>@param what can be either &ldquo;subjects&rdquo; or &ldquo;activities&rdquo;</p>
+
+<p>@param set is a charecter string of either &ldquo;test&rdquo; or &ldquo;train&rdquo;</p>
 
 <pre><code class="r">read.misc &lt;- function(what = c(&quot;subjects&quot;, &quot;activities&quot;)[1],
                       set = c(&quot;test&quot;, &quot;train&quot;)[1]){
-  fcon &lt;- file(file.path(raw.dir, set, paste0(&quot;subject_&quot;, set, &quot;.txt&quot;)))
+  if (what == &quot;subjects&quot;){
+    fcon &lt;- file(file.path(raw.dir, set, paste0(&quot;subject_&quot;, set, &quot;.txt&quot;)))
+  } else {
+    fcon &lt;- file(file.path(raw.dir, set, paste0(&quot;y_&quot;, set, &quot;.txt&quot;)))
+  }
+
   dat &lt;- readLines(con=fcon)
   close(fcon)
   #print(table(dat))
@@ -228,10 +243,19 @@ features &lt;- read.table(ifile, header=F, &quot; &quot;, stringsAsFactors=F)
 selected &lt;- grep(&quot;mean|std&quot;, features[,2])
 </code></pre>
 
+<p>Read activity labels</p>
+
+<pre><code class="r">activity.lables &lt;- read.table(file.path(raw.dir, &quot;activity_labels.txt&quot;),
+                              header = FALSE, colClasses=c(&quot;numeric&quot;, &quot;character&quot;))
+activity.lables &lt;- activity.lables[,2]
+</code></pre>
+
 <p>A function to extract elements from ONE line of a dataset file</p>
 
-<p>it is called repeatedly to extract elements from all lines of a dataset( either train or test)
-@param line A character string
+<p>it is called repeatedly in <code>read.data</code> function to extract elements from all
+lines of a dataset( either train or test)</p>
+
+<p>@param line A character string
 @param col.ids A vector of ids of columns to take data</p>
 
 <pre><code class="r">take.elems &lt;- function(line = character(), col.ids = selected) {
@@ -242,21 +266,24 @@ selected &lt;- grep(&quot;mean|std&quot;, features[,2])
 
 <p>Read raw data and return columns of interest.</p>
 
-<p>This function allows reading each dataset separately and returns a maxtrix of selected columns
-that is specified by &#39;col.ids&#39; parameter. 
-@param dataset is either &#39;test&#39; or &#39;train&#39;
-@param col.ids is a numeric vector of columns ids of features of interest.
-Input files have &ldquo;  &rdquo; (two spaces) for column separators, and &ldquo; &rdquo; for subcolumn separator.
-That made it imposible to use read.table or fread directly.</p>
+<p>This function allows reading each dataset separately.
+it returns a maxtrix of selected columns that is specified by &#39;col.ids&#39;
+parameter. </p>
+
+<p>@param dataset is either &#39;test&#39; or &#39;train&#39;</p>
+
+<p>@param col.ids is a numeric vector of columns ids of features of interest.</p>
+
+<p>Input files is fixed-width-formatted data. it can be read with read.fwf() 
+function, but I prefer to use readLines() for better speed.</p>
 
 <pre><code class="r">read.data &lt;- function(dataset = &quot;test&quot;, col.ids = selected){ 
   ifile &lt;- file.path(raw.dir, tolower(dataset), paste0(&quot;X_&quot;, tolower(dataset), &quot;.txt&quot;))
   if (!file.exists(ifile)) {
     stop(&quot;Could not find dataset file: &quot;, ifile)
   }
-  #test &lt;- fread(ifile, sep = &quot;\n&quot;)
   fcon &lt;- file(ifile, open=&quot;rt&quot;)
-  dat &lt;- readLines(con = fcon) # Use ReadLines for portability, one can also preprocess input files with &#39;gawk&#39;, &#39;sed&#39;, etc 
+  dat &lt;- readLines(con = fcon) 
   close(fcon)
   dat &lt;- do.call(rbind,
                  lapply(dat, FUN= function(line) take.elems(line, col.ids)
@@ -274,7 +301,7 @@ message(&quot;Reading subjects list...&quot;)
 <pre><code class="r"># This is not unique list, but a list subjects indexes that tell who does this
 # activity for each row of data.
 test.subjects &lt;- read.misc(what=&quot;subjects&quot;, set= &quot;test&quot;)
-train.subjects &lt;- read.misc(&quot;subects&quot;, &quot;train&quot;)
+train.subjects &lt;- read.misc(&quot;subjects&quot;, &quot;train&quot;)
 
 message(&quot;Reading activities list ...&quot;)
 </code></pre>
@@ -285,15 +312,21 @@ message(&quot;Reading activities list ...&quot;)
 <pre><code class="r"># Activity indexes for each row of data
 test.activities &lt;- read.misc(what=&quot;activities&quot;, set= &quot;test&quot;)
 train.activities &lt;- read.misc(&quot;activities&quot;, &quot;train&quot;)
+</code></pre>
 
-message(&quot;Reading Test dataset...&quot;)
+<p>TASK 1 &amp; 2:
+Merges the training and the test sets to create one data set.
+Extracts only the measurements on the mean and standard deviation 
+for each measurement (this is done when calling <code>read.data</code> function.</p>
+
+<pre><code class="r">message(&quot;Reading Test dataset...&quot;)
 </code></pre>
 
 <pre><code>## Reading Test dataset...
 </code></pre>
 
 <pre><code class="r">test.set &lt;- read.data(&quot;test&quot;)
-
+#test.set &lt;- as.numeric(test.set)
 message(&quot;Reading Train dataset...&quot;)
 </code></pre>
 
@@ -301,31 +334,68 @@ message(&quot;Reading Train dataset...&quot;)
 </code></pre>
 
 <pre><code class="r">train.set &lt;- read.data(&quot;train&quot;)
-</code></pre>
+#train.set &lt;- as.numeric(train.set)
 
-<p>Task 1 &amp; 2</p>
 
-<pre><code class="r">test.set &lt;- cbind(test.subjects,test.activities, test.set)
+test.set &lt;- cbind(test.subjects,test.activities, test.set)
 train.set &lt;- cbind(train.subjects, train.activities, train.set)
+slim.data &lt;- rbind(test.set, train.set)
 
-cnames &lt;- features[selected,2]
-cnames &lt;- c(&quot;Subject.ID&quot;,&quot;Activities&quot;, cnames)
-cnames &lt;- matrix(cnames, ncol = length(cnames))
+#rm(list=c(&quot;train.set&quot;, &quot;test.set&quot;))
 </code></pre>
 
-<p>##Write out combined slim-down dataset</p>
+<p>TASK 4: Appropriately labels the data set with descriptive variable names. </p>
+
+<pre><code class="r">cnames &lt;- features[selected,2]
+# Replace prefix &#39;t&#39; with &#39;time&#39;
+cnames &lt;- gsub(pattern=&quot;^t&quot;, replacement=&quot;time.&quot;, x=cnames)
+# Replace prefix &#39;f&#39; with &#39;frequency&#39;
+cnames &lt;- gsub(pattern=&quot;^f&quot;, replacement=&quot;frequency.&quot;, x=cnames)
+# Replace hyphens with &#39;.&#39; dots, and remove parenthesises 
+cnames &lt;- gsub(pattern=&quot;-&quot;, replacement=&quot;.&quot;, x=cnames)
+cnames &lt;- gsub(pattern=&quot;\\(\\)&quot;, replacement=&quot;&quot;, x=cnames)
+cnames &lt;- c(&quot;Subject.ID&quot;,&quot;Activities&quot;, cnames)
+#cnames &lt;- matrix(cnames, ncol = length(cnames))
+colnames(slim.data) &lt;- cnames
+</code></pre>
+
+<p>TASK 3: Uses descriptive activity names to name the activities in the data set</p>
+
+<pre><code class="r">slim.data[, &quot;Activities&quot;] &lt;- activity.lables[as.numeric(slim.data[, &quot;Activities&quot;])]
+</code></pre>
+
+<p>Write out combined slim-down dataset for later use</p>
 
 <pre><code class="r">ofile &lt;- file.path(dat.dir, &quot;combined_slim_dataset.txt&quot;)
 message(sprintf(&quot;Writing output to &#39;%s&#39;...&quot;, ofile))
 </code></pre>
 
-<pre><code>## Writing output to &#39;data/combined_slim_dataset.txt&#39;...
+<pre><code>## Writing output to &#39;./data/combined_slim_dataset.txt&#39;...
 </code></pre>
 
-<pre><code class="r"># Make sequential writing of data fragments instead of merging before writing
-write.table(cnames, file= ofile, append = FALSE, row.names= FALSE, col.names=FALSE, sep=&quot;,&quot;)
-write.table(test.set, file= ofile, append = TRUE, row.names= FALSE, col.names=FALSE, sep=&quot;,&quot;)
-write.table(train.set, file= ofile, append = TRUE, row.names= FALSE, col.names=FALSE, sep=&quot;,&quot;)
+<pre><code class="r">write.table(slim.data, file= ofile, append = FALSE, row.names= FALSE, col.names=TRUE, sep=&quot;,&quot;)
+</code></pre>
+
+<p>TASK 5: Creates a second, independent tidy data set 
+with the average of each variable for each activity and each subject.</p>
+
+<pre><code class="r">#slim.data &lt;- data.frame(slim.data, stringsAsFactors = FALSE) # avoid a bug 
+slim.data &lt;- data.table(slim.data)
+setkey(slim.data, Subject.ID, Activities) 
+dt.out &lt;- slim.data[, lapply(.SD, function(x) mean(as.numeric(x))),
+                     by = list(Subject.ID, Activities)]
+ofile &lt;- file.path(dat.dir, &quot;combined_tidy_dataset.txt&quot;)
+message(sprintf(&quot;Writing output to &#39;%s&#39;...&quot;, ofile))
+</code></pre>
+
+<pre><code>## Writing output to &#39;./data/combined_tidy_dataset.txt&#39;...
+</code></pre>
+
+<pre><code class="r">write.table(dt.out, file= ofile, append = FALSE, row.names= FALSE, col.names=TRUE, sep=&quot;,&quot;)
+# Done everything remove unpacked raw data
+unlink(x=raw.dir, recursive= TRUE)
+# cleanup variables 
+rm(list=ls())
 </code></pre>
 
 <!-- Automatically generated by RStudio [12861c30b10411e1afa60800200c9a66] -->
